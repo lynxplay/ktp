@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # BEGIN config
-FORK_NAME="Tuinity"
+FORK_NAME="KTP"
 API_REPO=""
 SERVER_REPO=""
 PAPER_API_REPO=""
