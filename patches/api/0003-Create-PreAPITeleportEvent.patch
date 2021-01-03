@@ -15,17 +15,18 @@ entities that are teleported by other plugins prior to the checks.
 
 diff --git a/src/main/java/org/bukkit/event/server/PreAPITeleportEvent.java b/src/main/java/org/bukkit/event/server/PreAPITeleportEvent.java
 new file mode 100644
-index 0000000000000000000000000000000000000000..aea17a558649b5c315f1a4f504deda28d550f951
+index 0000000000000000000000000000000000000000..f03f003550face88d43b69e2b8a0ec33de44d165
 --- /dev/null
 +++ b/src/main/java/org/bukkit/event/server/PreAPITeleportEvent.java
-@@ -0,0 +1,81 @@
+@@ -0,0 +1,99 @@
 +package org.bukkit.event.server;
 +
++import org.bukkit.Bukkit;
 +import org.bukkit.Location;
 +import org.bukkit.entity.Entity;
 +import org.bukkit.entity.LivingEntity;
++import org.bukkit.event.Event;
 +import org.bukkit.event.HandlerList;
-+import org.bukkit.event.entity.EntityEvent;
 +import org.bukkit.event.player.PlayerTeleportEvent;
 +import org.jetbrains.annotations.NotNull;
 +
@@ -40,10 +41,15 @@ index 0000000000000000000000000000000000000000..aea17a558649b5c315f1a4f504deda28
 + * The only checks that this event is not capable of bypassing is the {@link Location#checkFinite()} check that
 + * is assumed for every kind of teleportation as well as the {@link LivingEntity#isDead()} checks that are performed
 + * prior to teleportation as entities with 0 health or those that are marked dead may not be teleported.
++ * <p>
++ * Furthermore this event may be called in both async and sync mode as teleportation may occur in sync with the server
++ * and outside of the main server thread. If the event is in sync or not can be checked through
++ * {@link Event#isAsynchronous()}
 + */
-+public class PreAPITeleportEvent extends EntityEvent {
++public class PreAPITeleportEvent extends Event {
 +
 +    private static final HandlerList handlers = new HandlerList();
++    private final Entity entity;
 +    private final Location from;
 +    private final Location to;
 +    private final PlayerTeleportEvent.TeleportCause cause;
@@ -52,10 +58,22 @@ index 0000000000000000000000000000000000000000..aea17a558649b5c315f1a4f504deda28
 +                               @NotNull Location from,
 +                               @NotNull Location to,
 +                               @NotNull PlayerTeleportEvent.TeleportCause cause) {
-+        super(teleportingEntity);
++        super(!Bukkit.isPrimaryThread());
++        this.entity = teleportingEntity;
 +        this.from = from;
 +        this.to = to;
 +        this.cause = cause;
++    }
++
++    /**
++     * Provides the entity that is about to be teleported through an api call.
++     * This entity may or may not comply with the spigot api rules for teleportation.
++     *
++     * @return the entity instance that is about to be teleported. This instance will never be null.
++     */
++    @NotNull
++    public Entity getEntity() {
++        return entity;
 +    }
 +
 +    /**
