@@ -5,7 +5,7 @@ Subject: [PATCH] KTP POM Changes
 
 
 diff --git a/pom.xml b/pom.xml
-index 20c473f521e50df57065d3644398f9db777c1a24..4f2b78c52867d839c0e155353181ae9034ba9ae1 100644
+index 20c473f521e50df57065d3644398f9db777c1a24..82154c9db53172f54123a02817ec3b768e7a5f49 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -3,18 +3,19 @@
