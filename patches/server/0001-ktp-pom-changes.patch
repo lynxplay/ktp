@@ -5,7 +5,7 @@ Subject: [PATCH] KTP POM Changes
 
 
 diff --git a/pom.xml b/pom.xml
-index e4c63bb76cb598545f9d215a8859724d6e7f8b81..5253520a8b01d316fe6b7099bc0fe82680e79f01 100644
+index e4c63bb76cb598545f9d215a8859724d6e7f8b81..4fd7ddafc99b0fca3cdaeb8abef129323bd35126 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -1,11 +1,11 @@
@@ -13,12 +13,12 @@ index e4c63bb76cb598545f9d215a8859724d6e7f8b81..5253520a8b01d316fe6b7099bc0fe826
           xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
      <modelVersion>4.0.0</modelVersion>
 -    <artifactId>paper</artifactId>
-+    <artifactId>ktp</artifactId>
++    <artifactId>ktp-server</artifactId>
      <packaging>jar</packaging>
      <version>1.15.2-R0.1-SNAPSHOT</version>
 -    <name>Paper</name>
 -    <url>https://papermc.io</url>
-+    <name>KTP-Server</name>
++    <name>ktp-server</name>
 +    <url>https://github.com/lynxplay/knockturn-paper</url>
  
      <properties>

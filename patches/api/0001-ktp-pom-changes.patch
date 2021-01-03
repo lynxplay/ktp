@@ -1,0 +1,92 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Bjarne Koll <lynxplay101@gmail.com>
+Date: Fri, 14 Dec 2018 21:52:29 -0800
+Subject: [PATCH] KTP POM Changes
+
+
+diff --git a/pom.xml b/pom.xml
+index 20c473f521e50df57065d3644398f9db777c1a24..3432b5a32d437cc40c5623f970dcd802637804df 100644
+--- a/pom.xml
++++ b/pom.xml
+@@ -3,18 +3,19 @@
+          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+     <modelVersion>4.0.0</modelVersion>
+     <parent>
+-        <groupId>com.destroystokyo.paper</groupId>
+-        <artifactId>paper-parent</artifactId>
++        <groupId>dev.lynxplay</groupId>
++        <artifactId>ktp-parent</artifactId>
+         <version>dev-SNAPSHOT</version>
++        <relativePath>../pom.xml</relativePath>
+     </parent>
+ 
+-    <groupId>com.destroystokyo.paper</groupId>
+-    <artifactId>paper-api</artifactId>
++    <groupId>dev.lynxplay</groupId>
++    <artifactId>ktp-api</artifactId>
+     <version>1.15.2-R0.1-SNAPSHOT</version>
+     <packaging>jar</packaging>
+ 
+-    <name>Paper-API</name>
+-    <url>https://github.com/PaperMC/Paper</url>
++    <name>ktp-api</name>
++    <url>https://github.com/lynxplay/knockturn-paper</url>
+     <description>An enhanced plugin API for Minecraft servers.</description>
+ 
+     <properties>
+@@ -276,5 +277,55 @@
+                 </plugins>
+             </build>
+         </profile>
++        <profile>
++            <id>deployment</id>
++            <distributionManagement>
++                <snapshotRepository>
++                    <id>knockturn-public</id>
++                    <name>internal snapshots</name>
++                    <url>https://repo.knockturnmc.com/content/repositories/knockturn-public/</url>
++                </snapshotRepository>
++            </distributionManagement>
++            <build>
++                <plugins>
++                    <plugin>
++                        <groupId>org.apache.maven.plugins</groupId>
++                        <artifactId>maven-source-plugin</artifactId>
++                        <version>3.2.1</version>
++                        <executions>
++                            <execution>
++                                <id>attach-sources</id>
++                                <phase>install</phase>
++                                <goals>
++                                    <goal>jar-no-fork</goal>
++                                </goals>
++                            </execution>
++                        </executions>
++                    </plugin>
++                    <plugin>
++                        <groupId>org.apache.maven.plugins</groupId>
++                        <artifactId>maven-javadoc-plugin</artifactId>
++                        <version>3.2.0</version>
++                        <executions>
++                            <execution>
++                                <id>attach-javadocs</id>
++                                <phase>install</phase>
++                                <goals>
++                                    <goal>jar</goal>
++                                </goals>
++                            </execution>
++                        </executions>
++                        <configuration>
++                            <source>8</source>
++                        </configuration>
++                    </plugin>
++                    <plugin>
++                        <groupId>org.apache.maven.plugins</groupId>
++                        <artifactId>maven-deploy-plugin</artifactId>
++                        <version>3.0.0-M1</version>
++                    </plugin>
++                </plugins>
++            </build>
++        </profile>
+     </profiles>
+ </project>
