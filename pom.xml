@@ -18,6 +18,14 @@
         </repository>
     </repositories>
 
+    <distributionManagement>
+        <snapshotRepository>
+            <id>knockturn-public</id>
+            <name>internal snapshots</name>
+            <url>https://repo.knockturnmc.com/content/repositories/knockturn-public/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
         <defaultGoal>install</defaultGoal>
         <finalName>${project.artifactId}</finalName>

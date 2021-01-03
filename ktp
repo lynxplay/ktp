@@ -45,9 +45,11 @@ case "$1" in
     (
         basedir
         mvn -N install
-        cd ${FORK_NAME}-api && mvn -e clean install
-        cd ../Paper/Paper-MojangAPI && mvn -e clean install
-        cd ../../${FORK_NAME}-server && mvn -e clean install
+        SKIP_TESTS="false"
+        if [ "$2" == "fast" ]; then SKIP_TESTS="true"; fi
+        cd ${FORK_NAME}-api && mvn -e install -Dmaven.test.skip="$SKIP_TESTS"
+        cd ../Paper/Paper-MojangAPI && mvn -e install -Dmaven.test.skip="$SKIP_TESTS"
+        cd ../../${FORK_NAME}-server && mvn -e install -Dmaven.test.skip="$SKIP_TESTS"
     )
     ;;
     "jar" | "paperclip")

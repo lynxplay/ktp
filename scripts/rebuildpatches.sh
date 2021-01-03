@@ -33,6 +33,10 @@ function savePatches {
 
     git format-patch --no-signature --zero-commit --full-index --no-stat -N -o $basedir/patches/$2 upstream/upstream
     cd $basedir
+    for file in $basedir/patches/$2/*.patch; do
+      sed -i 's/[ \t]*$//' "$file"
+    done
+
     git add -A $basedir/patches/$2
     echo "  Patches saved for $what to patches/$2"
 }

@@ -19,20 +19,20 @@ index 20c473f521e50df57065d3644398f9db777c1a24..3432b5a32d437cc40c5623f970dcd802
          <version>dev-SNAPSHOT</version>
 +        <relativePath>../pom.xml</relativePath>
      </parent>
- 
+
 -    <groupId>com.destroystokyo.paper</groupId>
 -    <artifactId>paper-api</artifactId>
 +    <groupId>dev.lynxplay</groupId>
 +    <artifactId>ktp-api</artifactId>
      <version>1.15.2-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
- 
+
 -    <name>Paper-API</name>
 -    <url>https://github.com/PaperMC/Paper</url>
 +    <name>ktp-api</name>
 +    <url>https://github.com/lynxplay/knockturn-paper</url>
      <description>An enhanced plugin API for Minecraft servers.</description>
- 
+
      <properties>
 @@ -276,5 +277,55 @@
                  </plugins>
