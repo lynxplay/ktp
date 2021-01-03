@@ -14,7 +14,7 @@ index 62f7a6817da079513f471e36cd79739d36a36d86..09105d516609a20d035d74c10acd39df
 @@ -191,6 +191,11 @@ public final class PluginClassLoader extends URLClassLoader { // Spigot
          }
      }
-
+ 
 +    @Override
 +    public void addURL(URL url) {
 +        super.addURL(url);
