@@ -1,7 +1,7 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: Bjarne Koll <lynxplay101@gmail.com>
 Date: Fri, 14 Dec 2018 21:52:29 -0800
-Subject: [PATCH] KTP POM Changes
+Subject: [PATCH] ktp pom changes
 
 
 diff --git a/pom.xml b/pom.xml

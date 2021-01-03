@@ -25,7 +25,7 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-maven-
 
-    - name: Patch KTP
+    - name: Patch ktp
       run: |
         git config --global user.email "you@example.com"
         git config --global user.name "Your Name"
@@ -34,5 +34,5 @@ jobs:
         
     - uses: actions/upload-artifact@v2
       with:
-        name: KTP-JDK${{ matrix.java }}
+        name: ktp-JDK${{ matrix.java }}
         path: ktp-paperclip.jar

@@ -37,5 +37,5 @@ jobs:
         
     - uses: actions/upload-artifact@v2
       with:
-        name: KTP-PR${{ env.PR }}-JDK${{ matrix.java }}
+        name: ktp-PR${{ env.PR }}-JDK${{ matrix.java }}
         path: ktp-paperclip.jar

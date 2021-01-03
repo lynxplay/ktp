@@ -67,7 +67,7 @@ function importLibrary {
 (
     cd Paper/Paper-Server/
     lastlog=$(git log -1 --oneline)
-    if [[ "$lastlog" = *"KTP-Extra mc-dev Imports"* ]]; then
+    if [[ "$lastlog" = *"ktp-Extra mc-dev Imports"* ]]; then
         git reset --hard HEAD^
     fi
 )
@@ -116,6 +116,6 @@ importLibrary com.mojang brigadier  com/mojang/brigadier/arguments BoolArgumentT
     cd Paper/Paper-Server/
     rm -rf nms-patches
     git add src -A
-    echo -e "KTP-Extra mc-dev Imports\n\n$MODLOG" | git commit src -F -
+    echo -e "ktp-Extra mc-dev Imports\n\n$MODLOG" | git commit src -F -
     exit 0
 )

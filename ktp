@@ -45,9 +45,9 @@ case "$1" in
     (
         basedir
         mvn -N install
-        cd ${FORK_NAME}-API && mvn -e clean install
+        cd ${FORK_NAME}-api && mvn -e clean install
         cd ../Paper/Paper-MojangAPI && mvn -e clean install
-        cd ../../${FORK_NAME}-Server && mvn -e clean install
+        cd ../../${FORK_NAME}-server && mvn -e clean install
     )
     ;;
     "jar" | "paperclip")
@@ -60,9 +60,9 @@ case "$1" in
         ./scripts/apply.sh "$basedir"
         cd "$basedir"
         mvn -N install
-        cd ${FORK_NAME}-API && mvn -e clean install
+        cd ${FORK_NAME}-api && mvn -e clean install
         cd ../Paper/Paper-MojangAPI && mvn -e clean install
-        cd ../../${FORK_NAME}-Server && mvn -e clean install
+        cd ../../${FORK_NAME}-server && mvn -e clean install
         cd "$basedir"
         ./scripts/paperclip.sh
     )
@@ -71,8 +71,8 @@ case "$1" in
     (
         basedir
         mvn -N install
-        cd ${FORK_NAME}-API
-        mvn clean deploy && cd ../${FORK_NAME}-Server && mvn clean install
+        cd ${FORK_NAME}-api
+        mvn clean deploy && cd ../${FORK_NAME}-server && mvn clean install
     )
     ;;
     "up" | "upstream")
@@ -85,10 +85,10 @@ case "$1" in
         cd "$basedir"
     ;;
     "a" | "api")
-        cd "$basedir/KTP-API"
+        cd "$basedir/ktp-api"
     ;;
     "s" | "server")
-        cd "$basedir/KTP-Server"
+        cd "$basedir/ktp-server"
     ;;
     "setup")
         if [[ -f ~/.bashrc ]] ; then
@@ -102,7 +102,7 @@ case "$1" in
         fi
     ;;
     *)
-        echo "KTP build tool command. This provides a variety of commands to build and manage the PaperMC build"
+        echo "ktp build tool command. This provides a variety of commands to build and manage the PaperMC build"
         echo "environment. For all of the functionality of this command to be available, you must first run the"
         echo "'setup' command. View below for details. For essential building and patching, you do not need to do the setup."
         echo ""
