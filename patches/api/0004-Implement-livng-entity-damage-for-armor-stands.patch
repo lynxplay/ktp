@@ -9,10 +9,10 @@ armor stands to use the EntityLiving damage method instead of its own
 implementation.
 
 diff --git a/src/main/java/org/bukkit/entity/ArmorStand.java b/src/main/java/org/bukkit/entity/ArmorStand.java
-index af70bac7921852b58629d671fe03ad0e23be9266..da5d50f9dee60d458dba4765fde6d370020d3687 100644
+index 8ca6c9eba926f436203af211c6e274a59ddb15e8..679e0978aa3b10a0af49d52a6b6b50aa76f6f4ae 100644
 --- a/src/main/java/org/bukkit/entity/ArmorStand.java
 +++ b/src/main/java/org/bukkit/entity/ArmorStand.java
-@@ -392,4 +392,31 @@ public interface ArmorStand extends LivingEntity {
+@@ -443,4 +443,31 @@ public interface ArmorStand extends LivingEntity {
       */
      boolean isSlotDisabled(@NotNull org.bukkit.inventory.EquipmentSlot slot);
      // Paper end

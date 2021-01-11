@@ -5,7 +5,7 @@ Subject: [PATCH] ktp pom changes
 
 
 diff --git a/pom.xml b/pom.xml
-index e4c63bb76cb598545f9d215a8859724d6e7f8b81..063c65db9e5abc6549f741191949c95f39f319e0 100644
+index f641d2a79cbc38bc4ecffdbd8d1e1a5f9aa118f5..a05b81d6bcbb099ee318549a7f0332d61a747861 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -1,11 +1,11 @@
@@ -15,7 +15,7 @@ index e4c63bb76cb598545f9d215a8859724d6e7f8b81..063c65db9e5abc6549f741191949c95f
 -    <artifactId>paper</artifactId>
 +    <artifactId>ktp-server</artifactId>
      <packaging>jar</packaging>
-     <version>1.15.2-R0.1-SNAPSHOT</version>
+     <version>1.16.4-R0.1-SNAPSHOT</version>
 -    <name>Paper</name>
 -    <url>https://papermc.io</url>
 +    <name>ktp-server</name>
@@ -44,7 +44,7 @@ index e4c63bb76cb598545f9d215a8859724d6e7f8b81..063c65db9e5abc6549f741191949c95f
              <version>${project.version}</version>
              <scope>compile</scope>
          </dependency>
-@@ -164,15 +164,15 @@
+@@ -165,15 +165,15 @@
 
      <!-- This builds a completely 'ready to start' jar with all dependencies inside -->
      <build>

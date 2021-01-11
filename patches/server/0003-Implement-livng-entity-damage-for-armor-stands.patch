@@ -9,10 +9,10 @@ armor stands to use the EntityLiving damage method instead of its own
 implementation.
 
 diff --git a/src/main/java/net/minecraft/server/EntityArmorStand.java b/src/main/java/net/minecraft/server/EntityArmorStand.java
-index d35a0b2d94e4f52c257375c35f55b5a41c9f2c12..663194dd5557d5e8ad99cafc3d349733f787ddf8 100644
+index d6de166babe2e25a88f9e6dae462907e26b6fb6f..4abce1f15352abd1941fc0868f2d6b924c81541a 100644
 --- a/src/main/java/net/minecraft/server/EntityArmorStand.java
 +++ b/src/main/java/net/minecraft/server/EntityArmorStand.java
-@@ -50,6 +50,9 @@ public class EntityArmorStand extends EntityLiving {
+@@ -52,6 +52,9 @@ public class EntityArmorStand extends EntityLiving {
      private boolean noTickPoseDirty = false;
      private boolean noTickEquipmentDirty = false;
      // Paper end
@@ -22,7 +22,7 @@ index d35a0b2d94e4f52c257375c35f55b5a41c9f2c12..663194dd5557d5e8ad99cafc3d349733
 
      public EntityArmorStand(EntityTypes<? extends EntityArmorStand> entitytypes, World world) {
          super(entitytypes, world);
-@@ -224,6 +227,7 @@ public class EntityArmorStand extends EntityLiving {
+@@ -233,6 +236,7 @@ public class EntityArmorStand extends EntityLiving {
 
          nbttagcompound.set("Pose", this.B());
          if (this.canTickSetByAPI) nbttagcompound.setBoolean("Paper.CanTickOverride", this.canTick); // Paper - persist no tick setting
@@ -30,7 +30,7 @@ index d35a0b2d94e4f52c257375c35f55b5a41c9f2c12..663194dd5557d5e8ad99cafc3d349733
      }
 
      @Override
-@@ -261,6 +265,7 @@ public class EntityArmorStand extends EntityLiving {
+@@ -270,6 +274,7 @@ public class EntityArmorStand extends EntityLiving {
              this.canTickSetByAPI = true;
          }
          // Paper end
@@ -38,7 +38,7 @@ index d35a0b2d94e4f52c257375c35f55b5a41c9f2c12..663194dd5557d5e8ad99cafc3d349733
          NBTTagCompound nbttagcompound1 = nbttagcompound.getCompound("Pose");
 
          this.g(nbttagcompound1);
-@@ -455,6 +460,7 @@ public class EntityArmorStand extends EntityLiving {
+@@ -465,6 +470,7 @@ public class EntityArmorStand extends EntityLiving {
 
      @Override
      public boolean damageEntity(DamageSource damagesource, float f) {
@@ -46,8 +46,8 @@ index d35a0b2d94e4f52c257375c35f55b5a41c9f2c12..663194dd5557d5e8ad99cafc3d349733
          if (!this.world.isClientSide && !this.dead) {
              if (DamageSource.OUT_OF_WORLD.equals(damagesource)) {
                  // CraftBukkit start
-@@ -569,9 +575,24 @@ public class EntityArmorStand extends EntityLiving {
-                 this.armorItems.set(i, ItemStack.a);
+@@ -579,9 +585,24 @@ public class EntityArmorStand extends EntityLiving {
+                 this.armorItems.set(i, ItemStack.b);
              }
          }
 -        this.d(damagesource); // CraftBukkit - moved from above
@@ -72,36 +72,39 @@ index d35a0b2d94e4f52c257375c35f55b5a41c9f2c12..663194dd5557d5e8ad99cafc3d349733
 
      private void F() {
          this.world.playSound((EntityHuman) null, this.locX(), this.locY(), this.locZ(), SoundEffects.ENTITY_ARMOR_STAND_BREAK, this.getSoundCategory(), 1.0F, 1.0F);
-@@ -835,11 +856,13 @@ public class EntityArmorStand extends EntityLiving {
+@@ -845,12 +866,16 @@ public class EntityArmorStand extends EntityLiving {
+         return SoundEffects.ENTITY_ARMOR_STAND_BREAK;
      }
 
++    // ktp start - respect living entity damage for lighting
      @Override
--    public void onLightningStrike(EntityLightning entitylightning) {}
-+    public void onLightningStrike(EntityLightning entitylightning) {
-+        if (this.shouldTickLikeLivingEntity) super.onLightningStrike(entitylightning); // ktp - respect living entity damage for lighting
+-    public void onLightningStrike(WorldServer worldserver, EntityLightning entitylightning) {}
++    public void onLightningStrike(WorldServer worldserver, EntityLightning entitylightning) {
++        if (this.shouldTickLikeLivingEntity) super.onLightningStrike(worldserver, entitylightning);
 +    }
++    // ktp stop
 
      @Override
-     public boolean dM() {
+     public boolean eh() {
 -        return false;
 +        return this.shouldTickLikeLivingEntity; // ktp - respect living entity damage for potions
      }
 
      @Override
-@@ -854,7 +877,7 @@ public class EntityArmorStand extends EntityLiving {
+@@ -865,7 +890,7 @@ public class EntityArmorStand extends EntityLiving {
 
      @Override
-     public boolean dN() {
+     public boolean ei() {
 -        return false;
 +        return this.shouldTickLikeLivingEntity; // ktp - respect normal damage for wither
      }
 
      @Override
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftArmorStand.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftArmorStand.java
-index ac105270d5c7e2070f52782fc7dbdcd381db33a5..271775c3f7a946970cbfd5736cf0b27f3192011c 100644
+index cb22cbd68a4d310fecad3a87a97bf101216a5f64..efc1728cbd92f63bc32135209949edc59c868c1f 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftArmorStand.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftArmorStand.java
-@@ -309,4 +309,16 @@ public class CraftArmorStand extends CraftLivingEntity implements ArmorStand {
+@@ -323,4 +323,16 @@ public class CraftArmorStand extends CraftLivingEntity implements ArmorStand {
          this.getHandle().canTickSetByAPI = true;
      }
      // Paper end
