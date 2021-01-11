@@ -20,7 +20,7 @@ index d16d3fe58e6a45e3023946174d2e137a0670e455..89f68f3b2020a798c2f5ded523b76395
 @@ -497,9 +497,11 @@ public abstract class CraftEntity implements org.bukkit.entity.Entity {
          Preconditions.checkArgument(location != null, "location");
          location.checkFinite();
- 
+
 -        if (entity.isVehicle() || entity.dead) {
 -            return false;
 -        }
@@ -29,7 +29,7 @@ index d16d3fe58e6a45e3023946174d2e137a0670e455..89f68f3b2020a798c2f5ded523b76395
 +        server.getPluginManager().callEvent(new org.bukkit.event.server.PreAPITeleportEvent(this, this.getLocation(), location.clone(), cause));
 +        if (entity.isVehicle()) return false;
 +        // ktp stop - Call pre api teleport
- 
+
          // If this entity is riding another entity, we must dismount before teleporting.
          entity.stopRiding();
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
@@ -43,6 +43,6 @@ index 141003ca718cc6ba113de8e4855b18252b293ef6..4515a2c2dc62bceee38b9587a6d6e496
 +        // ktp start - Call pre api teleport
 +        server.getPluginManager().callEvent(new org.bukkit.event.server.PreAPITeleportEvent(this, this.getLocation(), location.clone(), cause));
 +        // ktp stop - Call pre api teleport
- 
+
          if (entity.playerConnection == null) {
             return false;
