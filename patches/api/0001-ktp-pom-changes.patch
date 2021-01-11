@@ -5,10 +5,10 @@ Subject: [PATCH] ktp pom changes
 
 
 diff --git a/pom.xml b/pom.xml
-index 20c473f521e50df57065d3644398f9db777c1a24..3432b5a32d437cc40c5623f970dcd802637804df 100644
+index 20c473f521e50df57065d3644398f9db777c1a24..b731c72f687b5cbe330159dc1eaefff1057dc20c 100644
 --- a/pom.xml
 +++ b/pom.xml
-@@ -3,18 +3,19 @@
+@@ -3,18 +3,17 @@
           xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
      <modelVersion>4.0.0</modelVersion>
      <parent>
@@ -17,12 +17,10 @@ index 20c473f521e50df57065d3644398f9db777c1a24..3432b5a32d437cc40c5623f970dcd802
 +        <groupId>dev.lynxplay</groupId>
 +        <artifactId>ktp-parent</artifactId>
          <version>dev-SNAPSHOT</version>
-+        <relativePath>../pom.xml</relativePath>
      </parent>
 
 -    <groupId>com.destroystokyo.paper</groupId>
 -    <artifactId>paper-api</artifactId>
-+    <groupId>dev.lynxplay</groupId>
 +    <artifactId>ktp-api</artifactId>
      <version>1.15.2-R0.1-SNAPSHOT</version>
      <packaging>jar</packaging>
@@ -34,7 +32,7 @@ index 20c473f521e50df57065d3644398f9db777c1a24..3432b5a32d437cc40c5623f970dcd802
      <description>An enhanced plugin API for Minecraft servers.</description>
 
      <properties>
-@@ -276,5 +277,55 @@
+@@ -276,5 +275,55 @@
                  </plugins>
              </build>
          </profile>

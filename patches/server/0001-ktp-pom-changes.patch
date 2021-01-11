@@ -5,7 +5,7 @@ Subject: [PATCH] ktp pom changes
 
 
 diff --git a/pom.xml b/pom.xml
-index e4c63bb76cb598545f9d215a8859724d6e7f8b81..063c65db9e5abc6549f741191949c95f39f319e0 100644
+index e4c63bb76cb598545f9d215a8859724d6e7f8b81..9a945602ed8d595ca25ee42b6dbd9244b9c2fa2b 100644
 --- a/pom.xml
 +++ b/pom.xml
 @@ -1,11 +1,11 @@
@@ -23,7 +23,7 @@ index e4c63bb76cb598545f9d215a8859724d6e7f8b81..063c65db9e5abc6549f741191949c95f
 
      <properties>
          <!-- <skipTests>true</skipTests> Paper - This [was] not going to end well -->
-@@ -18,16 +18,16 @@
+@@ -18,16 +18,15 @@
      </properties>
 
      <parent>
@@ -32,7 +32,7 @@ index e4c63bb76cb598545f9d215a8859724d6e7f8b81..063c65db9e5abc6549f741191949c95f
 +        <groupId>dev.lynxplay</groupId>
 +        <artifactId>ktp-parent</artifactId>
          <version>dev-SNAPSHOT</version>
-         <relativePath>../pom.xml</relativePath>
+-        <relativePath>../pom.xml</relativePath>
      </parent>
 
      <dependencies>
@@ -44,7 +44,7 @@ index e4c63bb76cb598545f9d215a8859724d6e7f8b81..063c65db9e5abc6549f741191949c95f
              <version>${project.version}</version>
              <scope>compile</scope>
          </dependency>
-@@ -164,15 +164,15 @@
+@@ -164,15 +163,15 @@
 
      <!-- This builds a completely 'ready to start' jar with all dependencies inside -->
      <build>
